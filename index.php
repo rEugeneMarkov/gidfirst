@@ -13,28 +13,29 @@
             <?php
             session_start();
             
-                $mysql = new mysqli("localhost", "root", "root", "php-first-mySQL");
-                $mysql->query("SET NAMES 'utf8'");
-                    $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
-                    while($row = $result->fetch_assoc()){
-                              echo '<div class="note">';
-                              echo '<p>';
-                                echo '<span class="date">'.$row['date'].' '.'</span>';
-                                echo '<span class="name">'.$row['name'].'</span>'.'<br>';
-                              echo '</p>';
-                              echo '<p>'.$row['comment'].'</p>';	
-                              echo '</div>';
-                    }
-                    $mysql->close();
-                    $success = "Запись успешно сохранена!";
-                    if ($_SESSION['success']==true and $_SESSION['success']<>$success){
-                    echo '<div class="info alert alert-warning">'.$_SESSION['success'].'</div>';
-                    unset($_SESSION['success']);
-                }else if($_SESSION['success']==true){
-                    echo '<div class="info alert alert-info">'.$_SESSION['success'].'</div>';
-                    unset($_SESSION['success']);
-                }
+            require(config.php);
 
+            while($row = $result->fetch_assoc()){
+
+                ?>
+                <div class="note">
+                <p>
+                <span class="date"><?= $row['date'] ?></span>
+                <span class="name"><?= $row['name'] ?></span>
+                </p>
+                <p><?= $row['comment']?></p>
+                </div>
+                <?php
+            }
+            $mysql->close();
+            $check = "Запись успешно сохранена!";
+                if ($_SESSION['check']==true and $_SESSION['check']<>$check){
+                    echo '<div class="info alert alert-warning">'.$_SESSION['check'].'</div>';
+                    unset($_SESSION['check']);
+                }else if($_SESSION['check']==true){
+                    echo '<div class="info alert alert-info">'.$_SESSION['check'].'</div>';
+                    unset($_SESSION['check']);
+                }
             ?>
 			<div id="form">
 				<form action="check_post.php" method="post">
