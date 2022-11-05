@@ -16,12 +16,11 @@
             require(config.php);
 
             while($row = $result->fetch_assoc()){
-
                 ?>
                 <div class="note">
                 <p>
-                <span class="date"><?= $row['date'] ?></span>
-                <span class="name"><?= $row['name'] ?></span>
+                <span class="date"><?= $row['date']?></span>
+                <span class="name"><?= $row['name']?></span>
                 </p>
                 <p><?= $row['comment']?></p>
                 </div>
