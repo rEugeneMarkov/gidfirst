@@ -13,7 +13,7 @@
             <?php
             session_start();
             
-            require(config.php);
+            require"config.php";
 
             while($row = $result->fetch_assoc()){
                 ?>

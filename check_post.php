@@ -6,7 +6,7 @@
         exit;
     }
 
-    require(config.php);
+    require"config.php";
 
         $name = htmlspecialchars(trim($_POST['name']));
         $comment = htmlspecialchars(trim($_POST['comment']));
