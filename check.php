@@ -4,9 +4,8 @@ $_SESSION['check'] = $_SESSION['check'];
 $check = "Запись успешно сохранена!";
 $check_name = "Введите корректное имя";
 $check_comment = "Мин. длинна комментария 50 символов";
-if (strlen($_SESSION['check']) < 1) {
-    echo '<div class="note">' . " " . '</div>';
-} elseif ($_SESSION['check'] == $check_name) {
+
+if ($_SESSION['check'] == $check_name) {
     echo '<div class="info alert alert-warning">' . $check_name . '</div>';
     $_SESSION['check'] = " ";
 } elseif ($_SESSION['check'] == $check_comment) {
