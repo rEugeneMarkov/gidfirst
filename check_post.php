@@ -2,11 +2,7 @@
 
 session_start();
 
-function redirect()
-{
-    header('Location: index.php');
-    exit;
-}
+    require"function.php";
 
     require"config.php";
 
