@@ -15,26 +15,36 @@
             
             require"config.php";
 
-            while($row = $result->fetch_assoc()){
-                ?>
+            while($row = $result->fetch_assoc())
+            {
+            ?>
                 <div class="note">
-                <p>
-                <span class="date"><?= $row['date']?></span>
-                <span class="name"><?= $row['name']?></span>
-                </p>
-                <p><?= $row['comment']?></p>
+                    <p>
+                        <span class="date"><?= $row['date']?></span>
+                        <span class="name"><?= $row['name']?></span>
+                    </p>
+                    <p>
+                        <?= $row['comment']?>
+                    </p>
                 </div>
-                <?php
+            <?php
             }
+
             $mysql->close();
+
             $check = "Запись успешно сохранена!";
-                if ($_SESSION['check']==true and $_SESSION['check']<>$check){
-                    echo '<div class="info alert alert-warning">'.$_SESSION['check'].'</div>';
-                    unset($_SESSION['check']);
-                }else if($_SESSION['check']==true){
-                    echo '<div class="info alert alert-info">'.$_SESSION['check'].'</div>';
-                    unset($_SESSION['check']);
-                }
+
+            if ($_SESSION['check']==true and $_SESSION['check']<>$check)
+            {
+                echo '<div class="info alert alert-warning">'.$_SESSION['check'].'</div>';
+                unset($_SESSION['check']);
+            }
+            else if($_SESSION['check']==true)
+            {
+                echo '<div class="info alert alert-info">'.$_SESSION['check'].'</div>';
+                unset($_SESSION['check']);
+            }
+
             ?>
 			<div id="form">
 				<form action="check_post.php" method="post">
