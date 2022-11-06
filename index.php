@@ -14,6 +14,7 @@
             session_start();
 
             require"config.php";
+            //require_once"test.php";
 
             $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
             while ($row = $result -> fetch_assoc()) {
@@ -30,17 +31,7 @@
                 <?php
             }
 
-            $mysql->close();
-
-            $check = "Запись успешно сохранена!";
-
-            if ($_SESSION['check'] == true and $_SESSION['check'] <> $check) {
-                echo '<div class="info alert alert-warning">' . $_SESSION['check'] . '</div>';
-                unset($_SESSION['check']);
-            } elseif ($_SESSION['check'] == true) {
-                echo '<div class="info alert alert-info">' . $_SESSION['check'] . '</div>';
-                unset($_SESSION['check']);
-            }
+            require"check.php";
 
             ?>
             <div id="form">

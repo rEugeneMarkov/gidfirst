@@ -19,7 +19,6 @@ if (strlen($name) <= 1) {
         $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `comment`) 
         VALUES (NULL, '$name', CURRENT_TIMESTAMP, '$comment')");
 
-        $mysql->close();
-        $_SESSION["check"] = "Запись успешно сохранена!";
+        $_SESSION['check'] = "Запись успешно сохранена!";
         redirect();
 }
