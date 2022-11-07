@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-    <head>
-    <meta charset="utf-8">  
-        <title>Гостевая книга</title>
-        <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
+<?php
+require"header.php";
+?>
         <div id="wrapper">
             <h1>Гостевая книга</h1>
 
@@ -42,6 +36,7 @@
                 </form>
             </div>
         </div>
-    </body>
-</html>
+<?php
+require"footer.php";
+?>
 
