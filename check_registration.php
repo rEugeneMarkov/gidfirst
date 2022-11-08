@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -6,19 +7,50 @@ session_start();
 
     require"config.php";
 
+    $result = $mysql->query("SELECT * FROM `users`");
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $pass = htmlspecialchars(trim($_POST['pass']));
+    $check_email = 0;
+    //check_email();
 
-if (strlen($name) <= 1) {
+//if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        while ($row['email'] = $email) {
+                $check_email = 1;
+        }
+    }
+//}
+
+    $_SESSION['name'] = $name;
+    $_SESSION['email'] = $email;
+
+if (strlen($name) <= 1) { // проверка имени
     $_SESSION['error_username'] = "Введите корректное имя";
+    $_SESSION['name'] = "";
     $_SESSION['success'] = "";
     $_SESSION['error_email'] = "";
+    $_SESSION['error_pass'] = "";
     redirectreg();
-} elseif (strlen($email) < 5) {
+} elseif (strlen($email) < 5 || strpos($email, "@") == false) { //проверка почты
         $_SESSION['error_email'] = "Введите корректную почту";
+        $_SESSION['email'] = "";
         $_SESSION['success'] = "";
         $_SESSION['error_username'] = "";
+        $_SESSION['error_pass'] = "";
+        redirectreg();
+} elseif ($check_email = 1) { // проверка почты на наличие в базе
+        $_SESSION['error_email'] = "Такой пользователь уже зарегистрирован";
+        $_SESSION['email'] = "";
+        $_SESSION['success'] = "";
+        $_SESSION['error_username'] = "";
+        $_SESSION['error_pass'] = "";
+        redirectreg();
+} elseif (strlen($pass) < 6) {
+        $_SESSION['error_pass'] = "Минимальная длинна пароля 6 символов";
+        $_SESSION['success'] = "";
+        $_SESSION['error_username'] = "";
+        $_SESSION['error_email'] = "";
         redirectreg();
 } else {
         $mysql->query("INSERT INTO `users` (`id`, `name`, `pass`, `email`, `date`) 
@@ -27,5 +59,8 @@ if (strlen($name) <= 1) {
         $_SESSION['success'] = "Вы успешно зарегистрировались!";
         $_SESSION['error_username'] = "";
         $_SESSION['error_email'] = "";
+        $_SESSION['error_pass'] = "";
+        $_SESSION['name'] = "";
+        $_SESSION['email'] = "";
         redirectreg();
 }
