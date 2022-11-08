@@ -7,21 +7,15 @@ session_start();
 
     require"config.php";
 
-    $result = $mysql->query("SELECT * FROM `users`");
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $pass = htmlspecialchars(trim($_POST['pass']));
-    $check_email = 0;
-    //check_email();
-
-//if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        while ($row['email'] = $email) {
-                $check_email = 1;
-        }
-    }
-//}
-
+    $result = $mysql->query("SELECT `email` FROM `users` WHERE `email` = $email");
+    $a = 0;
+if ($result->num_rows > 0) {
+        $a = 1;
+}
+    $_SESSION['test'] = $result;
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
 
@@ -32,14 +26,14 @@ if (strlen($name) <= 1) { // проверка имени
     $_SESSION['error_email'] = "";
     $_SESSION['error_pass'] = "";
     redirectreg();
-} elseif (strlen($email) < 5 || strpos($email, "@") == false) { //проверка почты
+} elseif (strlen($email) < 7 || strpos($email, "@") == false) { //проверка почты
         $_SESSION['error_email'] = "Введите корректную почту";
         $_SESSION['email'] = "";
         $_SESSION['success'] = "";
         $_SESSION['error_username'] = "";
         $_SESSION['error_pass'] = "";
         redirectreg();
-} elseif ($check_email = 1) { // проверка почты на наличие в базе
+} elseif ($a = 1) { // проверка почты на наличие в базе
         $_SESSION['error_email'] = "Такой пользователь уже зарегистрирован";
         $_SESSION['email'] = "";
         $_SESSION['success'] = "";
