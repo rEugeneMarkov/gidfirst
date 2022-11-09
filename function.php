@@ -17,12 +17,12 @@ function check_email()
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             if ($row['email'] == $email) {
-                $check_email = true;
+                $check_email = "error";
             } else {
-                $check_email = false;
+                $check_email = "";
             }
         }
     } else {
-        $check_email = false;
+        $check_email = "";
     }
 }
