@@ -11,8 +11,7 @@ $_SESSION['name'] = $_SESSION['name'];
 $_SESSION['email'] = $_SESSION['email'];
 $_SESSION['error_pass'] = $_SESSION['error_pass'];
 require"config.php";
-$result = $mysql->query("SELECT `email` FROM `users`");
-print_r ($result);
+
 ?>
 
 <div id="wrapper">

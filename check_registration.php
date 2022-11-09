@@ -11,10 +11,9 @@ session_start();
     $email = htmlspecialchars(trim($_POST['email']));
     $pass = htmlspecialchars(trim($_POST['pass']));
     $result = $mysql->query("SELECT `email` FROM `users` WHERE `email` = $email");
-    $a = 0;
-if ($result->num_rows > 0) {
-        $a = 1;
-}
+
+    check_email();
+
     $_SESSION['test'] = $result;
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
@@ -33,7 +32,7 @@ if (strlen($name) <= 1) { // проверка имени
         $_SESSION['error_username'] = "";
         $_SESSION['error_pass'] = "";
         redirectreg();
-} elseif ($a = 1) { // проверка почты на наличие в базе
+} elseif ($check_email == "error") { // проверка почты на наличие в базе
         $_SESSION['error_email'] = "Такой пользователь уже зарегистрирован";
         $_SESSION['email'] = "";
         $_SESSION['success'] = "";
