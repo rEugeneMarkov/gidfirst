@@ -18,6 +18,7 @@ session_start();
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
 
+// Initialization
 $_SESSION['error_username'] = "";
 $_SESSION['name'] = "";
 $_SESSION['success'] = "";
