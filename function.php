@@ -1,28 +1,18 @@
 <?php
 
-function redirect()
+function redirect($new_url)
 {
-    header('Location: index.php');
+    header('Location: ' . $new_url);
     exit;
 }
 
-function redirectreg()
+function is_email_exists(string $email): bool
 {
-    header('Location: registration.php');
-    exit;
-}
+    global $mysql;
+    $escapedEmail = $mysql->real_escape_string($email);
+    $result = $mysql->query(
+        "SELECT `email` FROM `users` WHERE email = '" . $escapedEmail . "'"
+    );
 
-function check_email()
-{
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if ($row['email'] == $email) {
-                $check_email = "error";
-            } else {
-                $check_email = "";
-            }
-        }
-    } else {
-        $check_email = "";
-    }
+    return $result->num_rows > 0;
 }

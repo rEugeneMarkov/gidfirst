@@ -1,7 +1,7 @@
 <?php
 require"header.php";
 ?>
-        <div id="wrapper">
+        
             <h1>Гостевая книга</h1>
 
             <?php
@@ -34,7 +34,6 @@ require"header.php";
                     <p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
                 </form>
             </div>
-        </div>
 <?php
 require"footer.php";
 ?>

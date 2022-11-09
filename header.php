@@ -7,4 +7,10 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
+    <div id="wrapper">
+<header>
+    <a href="index.php">Главная</a> |
+    <a href="registration.php">Регистрация</a> |
+    <a href="articles.php">Статьи</a> |
+</header> 
         <?php
