@@ -8,7 +8,6 @@ require"header.php";
             session_start();
 
             require"config.php";
-            //require_once"test.php";
 
             $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
             while ($row = $result -> fetch_assoc()) {

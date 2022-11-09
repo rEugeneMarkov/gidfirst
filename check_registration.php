@@ -10,7 +10,7 @@ session_start();
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $pass = htmlspecialchars(trim($_POST['pass']));
-    $result = $mysql->query("SELECT `email` FROM `users` WHERE `email` = $email");
+    $result = $mysql->query("SELECT `email` FROM `users`");
 
     check_email();
 
@@ -25,7 +25,7 @@ if (strlen($name) <= 1) { // проверка имени
     $_SESSION['error_email'] = "";
     $_SESSION['error_pass'] = "";
     redirectreg();
-} elseif (strlen($email) < 7 || strpos($email, "@") == false) { //проверка почты
+} elseif (strlen($email) < 7) { //проверка почты
         $_SESSION['error_email'] = "Введите корректную почту";
         $_SESSION['email'] = "";
         $_SESSION['success'] = "";

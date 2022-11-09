@@ -1,6 +1,7 @@
 <?php
 require"header.php";
 session_start();
+// иначе браузер ругается, хотя раньше такого не было.
 $_SESSION['error_username'] = $_SESSION['error_username'];
 $_SESSION['error_email'] = $_SESSION['error_email'];
 $_SESSION['error_subject'] = $_SESSION['error_subject'];
@@ -10,7 +11,6 @@ $_SESSION['success'] = $_SESSION['success'];
 $_SESSION['name'] = $_SESSION['name'];
 $_SESSION['email'] = $_SESSION['email'];
 $_SESSION['error_pass'] = $_SESSION['error_pass'];
-require"config.php";
 
 ?>
 
