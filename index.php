@@ -5,7 +5,7 @@ require"header.php";
             <h1>Гостевая книга</h1>
 
             <?php
-            session_start();
+            //session_start();
 
             require"config.php";
 

@@ -1,6 +1,6 @@
 <?php
 require"header.php";
-session_start();
+//session_start();
 
 $_SESSION['error_username'] = $_SESSION['error_username'];
 $_SESSION['error_email'] = $_SESSION['error_email'];
