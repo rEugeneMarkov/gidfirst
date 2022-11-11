@@ -17,15 +17,25 @@ function is_email_exists(string $email): bool
     return $result->num_rows > 0;
 }
 
-function is_user_registered(string $email, string $pass, string $name): bool
+function is_user_registered(string $email, string $pass): bool
 {
     global $mysql;
     $escapedEmail = $mysql->real_escape_string($email);
     $escapedPass = $mysql->real_escape_string($pass);
     $result = $mysql->query("SELECT * FROM `users` 
     WHERE email = '" . $escapedEmail . "' AND pass = '" . $escapedPass . "'");
-    //$row = $result->fetch_assoc();
-    //$name = $row['name'];
+    $row = $result->fetch_assoc();
+    $_SESSION['name'] = $row['name'];
+    $_SESSION['email'] = $row['email'];
+
 
     return $result->num_rows > 0;
+}
+
+
+function clear_session()
+{
+    $_SESSION = array();
+    header('Location: index.php');
+    exit;
 }

@@ -6,20 +6,22 @@ session_start();
     require"config.php";
 
     $name = htmlspecialchars(trim($_POST['name']));
-    $comment = htmlspecialchars(trim($_POST['comment']));
-    $new_url = 'index.php';
+    $article = htmlspecialchars(trim($_POST['article']));
+    $email = $_SESSION['email'];
+    $new_url = 'articles.php';
 
 if (strlen($name) <= 1) {
     $_SESSION['check'] = "Введите корректное имя";
     redirect($new_url);
-} elseif (strlen($comment) < 50) {
+} elseif (strlen($article) < 50) {
         $_SESSION['check'] = "Мин. длинна комментария 50 символов";
         redirect($new_url);
 } else {
         $escapedName = $mysql->real_escape_string($name);
-        $escapedComment = $mysql->real_escape_string($comment);
-        $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `comment`) 
-        VALUES (NULL, '$escapedName', CURRENT_TIMESTAMP, '$escapedComment')");
+        $escapedArticle = $mysql->real_escape_string($article);
+        $escapedEmail = $mysql->real_escape_string($email);
+        $mysql->query("INSERT INTO `articles` (`id`, `name`, `email`, `article`,`date`) 
+        VALUES (NULL, '$escapedName', '$escapedEmail', '$escapedArticle', CURRENT_TIMESTAMP)");
 
         $_SESSION['check'] = "Запись успешно сохранена!";
         redirect($new_url);

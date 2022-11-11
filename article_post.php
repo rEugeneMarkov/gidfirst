@@ -15,3 +15,11 @@ if ($_SESSION['check'] == $check_name) {
     echo '<div class="info alert alert-info">' . $check . '</div>';
     $_SESSION['check'] = " ";
 }
+?>
+<div id="form">
+    <form action="article_check_post.php" method="post">
+        <p><input type="text" value="<?=$_SESSION['name']?>"class="form-control" name="name" placeholder="Ваше имя"></p>
+        <p><textarea type="text" class="form-control" name="article" placeholder="Ваша статья"></textarea></p>
+        <p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
+    </form>
+</div>

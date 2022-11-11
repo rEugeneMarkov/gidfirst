@@ -23,17 +23,12 @@ require"header.php";
                 </div>
                 <?php
             }
-
-            require"check.php";
-
+            $log = $_SESSION['is_logined'];
+            if (strlen($log) > 0) {
+                include"post.php";
+            }
             ?>
-            <div id="form">
-                <form action="check_post.php" method="post">
-                    <p><input type="text" class="form-control" name="name" placeholder="Ваше имя"></p>
-                    <p><textarea type="text" class="form-control" name="comment" placeholder="Ваш отзыв"></textarea></p>
-                    <p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
-                </form>
-            </div>
+            
 <?php
 require"footer.php";
 ?>
