@@ -6,6 +6,7 @@
     $_SESSION['email'] = $_SESSION['email'];
     $_SESSION['is_logined'] = $_SESSION['is_logined'];
     require"function.php";
+    //session_variable();
 
 if (isset($_POST['clear_session'])) {
     clear_session();

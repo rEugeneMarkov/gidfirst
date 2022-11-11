@@ -1,5 +1,14 @@
 <?php
 
+function session_variable()
+{
+    session_start();
+    $_SESSION['email'] = $_SESSION['email'];
+    $_SESSION['login'] = $_SESSION['login'];
+    $_SESSION['email'] = $_SESSION['email'];
+    $_SESSION['is_logined'] = $_SESSION['is_logined'];
+}
+
 function redirect($new_url)
 {
     header('Location: ' . $new_url);

@@ -29,7 +29,7 @@ if (strlen($log) > 0) {
 } else {
     ?>
     <div class="note">
-        <p>
+        <p style="color:white;background-color:red;text-align: center;">
             Нужно выполнить вход!
         </p>
     </div>
