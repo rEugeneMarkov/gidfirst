@@ -13,6 +13,7 @@
     require"login.php";
 ?>
     <a href="index.php">Главная</a> |
+    <a href="index2.php">Главная2</a> |
     <a href="articles.php">Статьи</a> |
     <a href="registration.php">Регистрация</a> |
 </header> 
