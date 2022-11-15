@@ -11,17 +11,9 @@ require"header.php";
 
             $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
             while ($row = $result -> fetch_assoc()) {
-                ?>
-                <div class="note">
-                    <p>
-                        <span class="date"><?= $row['date']?></span>
-                        <span class="name"><?= $row['name']?></span>
-                    </p>
-                    <p>
-                        <?= $row['comment']?>
-                    </p>
-                </div>
-                <?php
+                //$a = renderTemplate('temp_comment.php', ['row' => $row]);
+                //echo '$a';
+                require"temp_comment.php";
             }
             $log = $_SESSION['is_logined'];
             $name = "";
