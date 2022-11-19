@@ -9,8 +9,8 @@ require"header.php";
 require"config.php";
 
 
-$log = $_SESSION['is_logined'];
-if (strlen($log) > 0) {
+$email = $_SESSION['is_logined'];
+if (strlen($email) > 0) {
     $result = $mysql->query("SELECT * FROM `articles` ORDER BY `id` DESC");
     while ($row = $result -> fetch_assoc()) {
         ?>

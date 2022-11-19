@@ -8,12 +8,8 @@ session_start();
     require"config.php";
 
     $name = $mysql->real_escape_string(htmlspecialchars(trim($_POST['name'])));
-    //$name = htmlspecialchars(trim($_POST['name']));
     $email = $mysql->real_escape_string(htmlspecialchars(trim($_POST['email'])));
-    //$email = htmlspecialchars(trim($_POST['email']));
     $pass = $mysql->real_escape_string(htmlspecialchars(trim($_POST['pass'])));
-    //$pass = htmlspecialchars(trim($_POST['pass']));
-    //$result = $mysql->query("SELECT `email` FROM `users`");
 
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;

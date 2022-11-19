@@ -1,41 +1,49 @@
 
 <?php
     session_start();
-    $_SESSION['email'] = $_SESSION['email'];
-    $_SESSION['login'] = $_SESSION['login'];
-    $_SESSION['email'] = $_SESSION['email'];
-    $_SESSION['is_logined'] = $_SESSION['is_logined'];
     require"function.php";
-    //session_variable();
+    require"config.php";
 
 if (isset($_POST['clear_session'])) {
     clear_session();
 }
 
-    $log = $_SESSION['is_logined'];
-if (strlen($log) > 0) {
+    $email = $_SESSION['is_logined'];
+if (strlen($email) > 0) {
+    $user = get_user($email);
+    $hello = 'Добро пожаловать ' . $user['name'];
     ?>
     <div style="text-align: center;">
         <form method="post">
-         <?=$_SESSION['is_logined']?>
+         <?=$hello?>
         <button name="clear_session" type="submit"class="btn btn-info btn-group">Выйти</button>
         </form> 
     </div>
     <?php
 } else {
-    ?>
+    if (isset($_POST['email'])) {
+        $email = htmlspecialchars(trim($_POST['email']));
+        $pass = htmlspecialchars(trim($_POST['pass']));
+        $pass = md5($pass);
+        $new_url = 'index.php';
+
+        if (is_user_registered($email, $pass)) {
+            $user = get_user($email);
+            $_SESSION['is_logined'] = $user['email'] ;
+            redirect($new_url);
+        } else {
+            $_SESSION['is_logined'] = "" ;
+            redirect($new_url);
+        }
+    } else {
+        ?>
         <div style="text-align: center;">
-
-        <form action="check_login.php" method="post">
-
-        <input type="email" name="email" placeholder="Введите email" class="form-group">
-
-        <input type="password" name="pass" placeholder="Введите пароль" class="form-group">
-
-        <button type="submit"class="btn btn-info btn-group">Войти</button>
-
-        </form> 
-
-</div>
-    <?php
+            <form action="" method="post">
+            <input type="email" name="email" placeholder="Введите email" class="form-group">
+            <input type="password" name="pass" placeholder="Введите пароль" class="form-group">
+            <button type="submit"class="btn btn-info btn-group">Войти</button>
+            </form> 
+        </div>
+        <?php
+    }
 }
