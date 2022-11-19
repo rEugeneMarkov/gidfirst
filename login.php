@@ -8,7 +8,7 @@ if (isset($_POST['clear_session'])) {
     clear_session();
 }
 
-    $email = $_SESSION['is_logined'];
+    $email = $_SESSION['email'];
 if (strlen($email) > 0) {
     $user = get_user($email);
     $hello = 'Добро пожаловать ' . $user['name'];
@@ -27,12 +27,11 @@ if (strlen($email) > 0) {
         $pass = md5($pass);
         $new_url = 'index.php';
 
-        if (is_user_registered($email, $pass)) {
-            $user = get_user($email);
-            $_SESSION['is_logined'] = $user['email'] ;
+        if ($user = get_user_by_email_and_pass($email, $pass)) {
+            $_SESSION['email'] = $user['email'] ;
             redirect($new_url);
         } else {
-            $_SESSION['is_logined'] = "" ;
+            $_SESSION['email'] = "" ;
             redirect($new_url);
         }
     } else {

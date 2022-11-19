@@ -12,10 +12,10 @@ require"header.php";
         require"temp_comment.php";
     }
 
-    $email = $_SESSION['is_logined'];
+    //$email = $_SESSION['email'];
     $user = get_user($email);
 
-    if (strlen($email) > 0) {
+    if (is_user_logined()) {
         if (isset($_POST['comment'])) {
             $comment = htmlspecialchars(trim($_POST['comment']));
             if (strlen($comment) < 50) {

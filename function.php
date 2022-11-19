@@ -29,7 +29,22 @@ function is_user_registered(string $email, string $pass): bool
     return $result->num_rows > 0;
 }
 
+function is_user_logined(): bool
+{
+    $email = $_SESSION['email'];
+    return strlen($email) > 0;
+}
+
 function get_user($email)
+{
+    global $mysql;
+    $escapedEmail = $mysql->real_escape_string($email);
+    $result = $mysql->query("SELECT * FROM `users` WHERE email = '" . $escapedEmail . "'");
+    $user = $result->fetch_assoc();
+    return $user;
+}
+
+function get_user_by_email_and_pass($email, $pass)
 {
     global $mysql;
     $escapedEmail = $mysql->real_escape_string($email);
@@ -40,7 +55,6 @@ function get_user($email)
 
 function add_comment($name, $comment)
 {
-    require"config.php";
     $escapedName = $mysql->real_escape_string($name);
     $escapedComment = $mysql->real_escape_string($comment);
     $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `comment`) 
@@ -51,7 +65,6 @@ function add_comment($name, $comment)
 
 function get_comments()
 {
-    require"config.php";
     global $mysql;
     $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
     return $result;
@@ -59,8 +72,9 @@ function get_comments()
 
 function clear_session()
 {
-    $_SESSION = array();
-    $_SESSION['is_logined'] = "";
+    $_SESSION = [
+        'email' => "",
+    ];
     header('Location: index.php');
     exit;
 }
