@@ -1,4 +1,3 @@
-
 <?php
 
 $mysql = new mysqli("mysql", "root", "root", "php-first-mySQL");

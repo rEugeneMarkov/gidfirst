@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require"login.php"; // вот так работает
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -10,11 +17,7 @@
     <div id="wrapper">
 <header>
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    //require"config.php";
-    require"login.php";
+    //require"login.php";
 ?>
     <a href="index.php">Главная</a> |
     <a href="articles.php">Статьи</a> |

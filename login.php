@@ -1,6 +1,5 @@
-
 <?php
-    session_start();
+    //session_start();
     require"function.php";
     require"config.php";
 
@@ -8,7 +7,11 @@ if (isset($_POST['clear_session'])) {
     clear_session();
 }
 
+if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
+} else {
+    $email = "";
+}
 if (strlen($email) > 0) {
     $user = get_user($email);
     $hello = 'Добро пожаловать ' . $user['name'];

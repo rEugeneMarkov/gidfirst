@@ -31,7 +31,7 @@ function is_user_registered(string $email, string $pass): bool
 
 function is_user_logined(): bool
 {
-    $email = $_SESSION['email'];
+    $email = $_SESSION['email'] ?? '';
     return strlen($email) > 0;
 }
 
