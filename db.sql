@@ -11,7 +11,7 @@ CREATE TABLE `php-first-mySQL`.`users` (
 CREATE TABLE `php-first-mySQL`.`exemple-first` ( 
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT , 
     `name` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL , 
-    `date` DATETIME(32) NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
     `comment` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
     PRIMARY KEY (`id`)
     ) 
