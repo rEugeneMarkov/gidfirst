@@ -1,7 +1,7 @@
 <?php
     //session_start();
-    require"function.php";
-    require"config.php";
+    //require"function.php";
+    //require"config.php";
 
 if (isset($_POST['clear_session'])) {
     clear_session();

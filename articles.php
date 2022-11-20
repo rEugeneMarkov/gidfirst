@@ -1,4 +1,5 @@
 <?php
+require"config.php";
 require"header.php";
 ?>
 <h1>Список статей</h1>

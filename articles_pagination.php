@@ -1,7 +1,7 @@
 
 <?php
     // Подключение к БД
-    require"config.php";
+    //require"config.php";
     /*
     $kol - количество записей для вывода
     $art - с какой записи выводить

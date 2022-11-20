@@ -1,4 +1,22 @@
 <?php
+require"config.php";
+//$check = "";
+
+if (isset($_POST['comment'])) {
+    $comment = htmlspecialchars(trim($_POST['comment']));
+    $new_url = 'index.php';
+    if (strlen($comment) < 50) {
+        $check = "Мин. длинна комментария 50 символов";
+        //redirect($new_url);
+    } else {
+        $email = $_SESSION['email'] ?? '';
+        $user = get_user($email);
+        add_comment($user['name'], $comment);
+        $check = "Запись успешно сохранена!";
+        redirect($new_url);
+    }
+}
+
 require"header.php";
 ?>
         
@@ -13,13 +31,6 @@ require"header.php";
 
     if (is_user_logined()) {
         if (isset($_POST['comment'])) {
-            $comment = htmlspecialchars(trim($_POST['comment']));
-            if (strlen($comment) < 50) {
-                $check = "Мин. длинна комментария 50 символов";
-            } else {
-                add_comment($user['name'], $comment);
-                $check = "Запись успешно сохранена! Обновите страницу.";
-            }
             echo '<div class="info alert alert-info">' . $check . '</div>';
         }
         ?>
