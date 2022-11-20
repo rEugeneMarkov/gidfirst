@@ -21,3 +21,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: php-first-mySQL
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
