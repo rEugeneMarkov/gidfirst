@@ -17,7 +17,7 @@ CREATE TABLE `php-first-mySQL`.`exemple-first` (
     ) 
     ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE `php-first-mySQL`.`articles1` ( 
+CREATE TABLE `php-first-mySQL`.`articles` ( 
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT , 
     `name` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL , 
     `email` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 

@@ -48,19 +48,48 @@ function get_user_by_email_and_pass($email, $pass)
 {
     global $mysql;
     $escapedEmail = $mysql->real_escape_string($email);
-    $result = $mysql->query("SELECT * FROM `users` WHERE email = '" . $escapedEmail . "'");
+    $escapedPass = $mysql->real_escape_string($pass);
+    $result = $mysql->query("SELECT * FROM `users` 
+    WHERE email = '" . $escapedEmail . "' AND pass = '" . $escapedPass . "'");
     $user = $result->fetch_assoc();
     return $user;
 }
 
 function add_comment($name, $comment)
 {
+    global $mysql;
     $escapedName = $mysql->real_escape_string($name);
     $escapedComment = $mysql->real_escape_string($comment);
     $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `comment`) 
     VALUES (NULL, '$escapedName', CURRENT_TIMESTAMP, '$escapedComment')");
     $check = "Запись успешно сохранена!";
     return $check;
+}
+
+function add_article($name, $article, $email)
+{
+    global $mysql;
+    $escapedName = $mysql->real_escape_string($name);
+    $escapedArticle = $mysql->real_escape_string($article);
+    $escapedEmail = $mysql->real_escape_string($email);
+    $mysql->query("INSERT INTO `articles` (`id`, `name`, `email`, `article`,`date`) 
+    VALUES (NULL, '$escapedName', '$escapedEmail', '$escapedArticle', CURRENT_TIMESTAMP)");
+
+    $check = "Запись успешно сохранена!";
+    return $check;
+}
+
+function register_user($name, $email, $pass)
+{
+    global $mysql;
+    $escapedName = $mysql->real_escape_string($name);
+    $escapedEmail = $mysql->real_escape_string($email);
+    $escapedPass = $mysql->real_escape_string($pass);
+    $mysql->query("INSERT INTO `users` (`id`, `name`, `pass`, `email`, `date`) 
+            VALUES (NULL, '$escapedName', MD5('$escapedPass'), '$escapedEmail', CURRENT_TIMESTAMP)");
+    $success = "Вы успешно зарегистрировались!";
+
+    return $success;
 }
 
 function get_comments()

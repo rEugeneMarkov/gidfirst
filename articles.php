@@ -4,28 +4,43 @@ require"header.php";
 <h1>Список статей</h1>
 
 <?php
-//session_start();
 
-require"config.php";
+//require"config.php";
 
 
-$email = $_SESSION['email'];
-if (strlen($email) > 0) {
-    $result = $mysql->query("SELECT * FROM `articles` ORDER BY `id` DESC");
-    while ($row = $result -> fetch_assoc()) {
-        ?>
-    <div class="note">
-        <p>
-            <span class="date"><?= $row['date']?></span>
-            <span class="name"><?= $row['name']?></span>
-        </p>
-        <p>
-            <?= $row['article']?>
-        </p>
-    </div>
-        <?php
+if (is_user_logined()) {
+    require"articles_pagination.php";
+    if (isset($_POST['article'])) {
+        $email = $_SESSION['email'];
+        $check_success = "Запись успешно сохранена!";
+        $check_comment = "Мин. длинна статьи 50 символов";
+        $article = htmlspecialchars(trim($_POST['article']));
+
+        if (strlen($article) < 50) {
+            $check = "Мин. длинна статьи 50 символов";
+        } else {
+            add_article($user['name'], $article, $email);
+            $check = "Запись успешно сохранена!";
+        }
+
+        if ($check == $check_comment) {
+            echo '<div class="info alert alert-warning">' . $check_comment . '</div>';
+            //$check = " ";
+        } elseif ($check == $check_success) {
+            echo '<div class="info alert alert-info">' . $check_success . '</div>';
+            //$check = " ";
+        }
     }
-    include"article_post.php";
+    ?>
+
+<div id="form">
+    <form action="" method="post">
+        <p><textarea type="text" class="form-control" name="article" placeholder="Ваша статья"></textarea></p>
+        <p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
+    </form>
+</div>
+
+    <?php
 } else {
     ?>
     <div class="note">

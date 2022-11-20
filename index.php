@@ -6,14 +6,10 @@ require"header.php";
 
     <?php
 
-    require"config.php";
     $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
     while ($row = $result -> fetch_assoc()) {
         require"temp_comment.php";
     }
-
-    //$email = $_SESSION['email'];
-    $user = get_user($email);
 
     if (is_user_logined()) {
         if (isset($_POST['comment'])) {
