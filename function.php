@@ -60,19 +60,19 @@ function add_comment($name, $comment)
     global $mysql;
     $escapedName = $mysql->real_escape_string($name);
     $escapedComment = $mysql->real_escape_string($comment);
-    $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `comment`) 
+    $mysql->query("INSERT INTO `exemple-first` (`id`, `name`, `date`, `content`) 
     VALUES (NULL, '$escapedName', CURRENT_TIMESTAMP, '$escapedComment')");
     $check = "Запись успешно сохранена!";
     return $check;
 }
 
-function add_article($name, $article, $email)
+function add_article($name, $content, $email)
 {
     global $mysql;
     $escapedName = $mysql->real_escape_string($name);
-    $escapedArticle = $mysql->real_escape_string($article);
+    $escapedArticle = $mysql->real_escape_string($content);
     $escapedEmail = $mysql->real_escape_string($email);
-    $mysql->query("INSERT INTO `articles` (`id`, `name`, `email`, `article`,`date`) 
+    $mysql->query("INSERT INTO `articles` (`id`, `name`, `email`, `content`,`date`) 
     VALUES (NULL, '$escapedName', '$escapedEmail', '$escapedArticle', CURRENT_TIMESTAMP)");
 
     $check = "Запись успешно сохранена!";
@@ -106,4 +106,20 @@ function clear_session()
     ];
     header('Location: index.php');
     exit;
+}
+
+function get_table_count($table)
+{
+    global $mysql;
+    $res = $mysql->query("SELECT COUNT(*) FROM `$table`");
+    $row = $res->fetch_row();
+    $total = $row[0];
+    return $total;
+}
+
+function get_table_content($table, $art, $kol)
+{
+    global $mysql;
+    $result = $mysql->query("SELECT * FROM `$table` ORDER BY `id` DESC LIMIT $art,$kol");
+    return $result;
 }

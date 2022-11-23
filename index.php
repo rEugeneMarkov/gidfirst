@@ -23,14 +23,19 @@ require"header.php";
     <h1>Гостевая книга</h1>
 
     <?php
-
-    $result = $mysql->query("SELECT * FROM `exemple-first` ORDER BY `id` DESC");
+    $table = "exemple-first";
+    require"pagination.php";
+    $result = get_table_content($table, $art, $kol);
     while ($row = $result -> fetch_assoc()) {
-        require"temp_comment.php";
+        require"temp_content.php";
     }
 
     if (is_user_logined()) {
         if (isset($_POST['comment'])) {
+            echo '<div class="info alert alert-info">' . $check . '</div>';
+        }
+        $check1 = $check ?? '';
+        if ($check1 == "Запись успешно сохранена!") {
             echo '<div class="info alert alert-info">' . $check . '</div>';
         }
         ?>

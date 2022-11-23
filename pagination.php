@@ -24,9 +24,11 @@ if (isset($_GET['page'])) {
     //echo $art;
 
     // Определяем все количество записей в таблице
-    $res = $mysql->query("SELECT COUNT(*) FROM `articles`");
-    $row = $res->fetch_row();
-    $total = $row[0]; // всего записей
+    //$table = "articles";
+    $total = get_table_count($table);
+    //$res = $mysql->query("SELECT COUNT(*) FROM `$table`");
+    //$row = $res->fetch_row();
+    //$total = $row[0]; // всего записей
     //echo $total;
 
     // Количество страниц для пагинации
@@ -75,23 +77,3 @@ if ($page < $str_pag) {
     </nav>
     </div>
     
-    
-    <?php
-
-    // Запрос и вывод записей
-    $result = $mysql->query("SELECT * FROM `articles` ORDER BY `id` DESC LIMIT $art,$kol");
-    $row = $result->fetch_array();
-    do {?>
-    <div class="note">
-    <p>
-        <span class="date"><?= $row['date']?></span>
-        <span class="name"><?= $row['name']?></span>
-    </p>
-    <p>
-        <?= $row['article']?>
-    </p>
-    </div>
-        <?php
-    } while ($row = $result->fetch_array());
-
-    ?>

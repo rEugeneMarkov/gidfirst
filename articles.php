@@ -10,17 +10,24 @@ require"header.php";
 
 
 if (is_user_logined()) {
-    require"articles_pagination.php";
-    if (isset($_POST['article'])) {
+    $table = "articles";
+    require"pagination.php";
+    $result = get_table_content($table, $art, $kol);
+    $row = $result->fetch_array();
+    do {
+        require"temp_content.php";
+    } while ($row = $result->fetch_array());
+
+    if (isset($_POST['content'])) {
         $email = $_SESSION['email'];
         $check_success = "Запись успешно сохранена!";
         $check_comment = "Мин. длинна статьи 50 символов";
-        $article = htmlspecialchars(trim($_POST['article']));
+        $content = htmlspecialchars(trim($_POST['content']));
 
-        if (strlen($article) < 50) {
+        if (strlen($content) < 50) {
             $check = "Мин. длинна статьи 50 символов";
         } else {
-            add_article($user['name'], $article, $email);
+            add_article($user['name'], $content, $email);
             $check = "Запись успешно сохранена!";
         }
 
@@ -36,7 +43,7 @@ if (is_user_logined()) {
 
 <div id="form">
     <form action="" method="post">
-        <p><textarea type="text" class="form-control" name="article" placeholder="Ваша статья"></textarea></p>
+        <p><textarea type="text" class="form-control" name="content" placeholder="Ваша статья"></textarea></p>
         <p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
     </form>
 </div>

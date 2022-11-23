@@ -5,6 +5,6 @@
         <span class="name"><?= $row['name']?></span>
     </p>
     <p>
-        <?= $row['comment']?>
+        <?= $row['content']?>
     </p>
 </div>
