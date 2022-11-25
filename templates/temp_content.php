@@ -1,4 +1,3 @@
-
 <div class="note">
     <p>
         <span class="date"><?= $row['date']?></span>

@@ -1,12 +1,25 @@
 <?php
-    //session_start();
-    //require"function.php";
-    //require"config.php";
-    require $_SERVER['DOCUMENT_ROOT'] . "/pages/function.php";
+
+    //require $_SERVER['DOCUMENT_ROOT'] . "/pages/function.php";
 
 if (isset($_POST['clear_session'])) {
-    $url = '/';
-    clear_session($url);
+    $_SESSION = [
+        'email' => "",
+    ];
+    $_POST = [
+        'email' => "",
+    ];
+}
+if (isset($_POST['email']) && strlen($_POST['email']) > 0) {
+    $email = htmlspecialchars(trim($_POST['email']));
+    $pass = htmlspecialchars(trim($_POST['pass']));
+    $pass = md5($pass);
+
+    if ($user = get_user_by_email_and_pass($email, $pass)) {
+        $_SESSION['email'] = $user['email'] ;
+    } else {
+        $_SESSION['email'] = "" ;
+    }
 }
 
 if (isset($_SESSION['email'])) {
@@ -26,21 +39,7 @@ if (strlen($email) > 0) {
     </div>
     <?php
 } else {
-    if (isset($_POST['email'])) {
-        $email = htmlspecialchars(trim($_POST['email']));
-        $pass = htmlspecialchars(trim($_POST['pass']));
-        $pass = md5($pass);
-        $new_url = '/';
-
-        if ($user = get_user_by_email_and_pass($email, $pass)) {
-            $_SESSION['email'] = $user['email'] ;
-            redirect($new_url);
-        } else {
-            $_SESSION['email'] = "" ;
-            redirect($new_url);
-        }
-    } else {
-        ?>
+    ?>
         <div style="text-align: center;">
             <form action="" method="post">
             <input type="email" name="email" placeholder="Введите email" class="form-group">
@@ -48,6 +47,6 @@ if (strlen($email) > 0) {
             <button type="submit"class="btn btn-info btn-group">Войти</button>
             </form> 
         </div>
-        <?php
-    }
+    <?php
 }
+

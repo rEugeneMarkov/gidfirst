@@ -1,13 +1,24 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
+//require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/templates/header.php";
+
+if (is_user_logined()) {
+    if (isset($_POST['content'])) {
+        $email = $_SESSION['email'];
+        $content = htmlspecialchars(trim($_POST['content']));
+
+        if (strlen($content) < 50) {
+            $check = "Мин. длинна статьи 50 символов";
+        } else {
+            add_article($user['name'], $content, $email);
+            $check = "Запись успешно сохранена!";
+        }
+    }
+}
 ?>
 <h1>Список статей</h1>
 
 <?php
-
-//require"config.php";
-
 
 if (is_user_logined()) {
     $table = "articles";
@@ -19,17 +30,8 @@ if (is_user_logined()) {
     } while ($row = $result->fetch_array());
 
     if (isset($_POST['content'])) {
-        $email = $_SESSION['email'];
         $check_success = "Запись успешно сохранена!";
         $check_comment = "Мин. длинна статьи 50 символов";
-        $content = htmlspecialchars(trim($_POST['content']));
-
-        if (strlen($content) < 50) {
-            $check = "Мин. длинна статьи 50 символов";
-        } else {
-            add_article($user['name'], $content, $email);
-            $check = "Запись успешно сохранена!";
-        }
 
         if ($check == $check_comment) {
             echo '<div class="info alert alert-warning">' . $check_comment . '</div>';

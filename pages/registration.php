@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
+//require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/templates/header.php";
 ?>
 

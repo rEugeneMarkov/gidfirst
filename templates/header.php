@@ -3,7 +3,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    require $_SERVER['DOCUMENT_ROOT'] . "/pages/login.php"; // вот так работает
+    //require $_SERVER['DOCUMENT_ROOT'] . "/pages/login.php"; // вот так работает
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -17,7 +17,8 @@
     <div id="wrapper">
 <header>
 <?php
-    //require"login.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/pages/login.php";
 ?>
     <a href="/">Главная</a> |
     <a href="/articles">Статьи</a> |
