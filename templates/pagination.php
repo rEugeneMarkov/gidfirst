@@ -24,11 +24,8 @@ if (isset($_GET['page'])) {
     //echo $art;
 
     // Определяем все количество записей в таблице
-    //$table = "articles";
     $total = get_table_count($table);
-    //$res = $mysql->query("SELECT COUNT(*) FROM `$table`");
-    //$row = $res->fetch_row();
-    //$total = $row[0]; // всего записей
+    // всего записей
     //echo $total;
 
     // Количество страниц для пагинации

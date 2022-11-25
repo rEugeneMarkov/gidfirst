@@ -1,9 +1,9 @@
 <?php
-    //session_start();
+    session_start();
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    require"login.php"; // вот так работает
+    require $_SERVER['DOCUMENT_ROOT'] . "/pages/login.php"; // вот так работает
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -19,9 +19,7 @@
 <?php
     //require"login.php";
 ?>
-    <a href="index.php">Главная</a> |
-    <a href="articles.php">Статьи</a> |
-    <a href="registration.php">Регистрация</a> |
+    <a href="/">Главная</a> |
+    <a href="/articles">Статьи</a> |
+    <a href="/registration">Регистрация</a> |
 </header> 
-    
-    

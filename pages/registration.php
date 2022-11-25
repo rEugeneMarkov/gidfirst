@@ -1,6 +1,6 @@
 <?php
-require"config.php";
-require"header.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/templates/header.php";
 ?>
 
 <h1>Регистрация</h1>
@@ -61,4 +61,4 @@ if (is_user_logined()) {
    
         <?php
 }
-        require"footer.php";
+        require $_SERVER['DOCUMENT_ROOT'] . "/templates/footer.php";

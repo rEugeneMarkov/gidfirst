@@ -1,6 +1,6 @@
 <?php
-require"config.php";
-require"header.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/pages/config.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/templates/header.php";
 ?>
 <h1>Список статей</h1>
 
@@ -11,11 +11,11 @@ require"header.php";
 
 if (is_user_logined()) {
     $table = "articles";
-    require"pagination.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/templates/pagination.php";
     $result = get_table_content($table, $art, $kol);
     $row = $result->fetch_array();
     do {
-        require"temp_content.php";
+        require $_SERVER['DOCUMENT_ROOT'] . "/templates/temp_content.php";
     } while ($row = $result->fetch_array());
 
     if (isset($_POST['content'])) {
@@ -60,4 +60,4 @@ if (is_user_logined()) {
 }
 ?>
 <?php
-require"footer.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/templates/footer.php";

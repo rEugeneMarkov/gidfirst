@@ -99,12 +99,12 @@ function get_comments()
     return $result;
 }
 
-function clear_session()
+function clear_session($url)
 {
     $_SESSION = [
         'email' => "",
     ];
-    header('Location: index.php');
+    header('Location: ' . $url);
     exit;
 }
 

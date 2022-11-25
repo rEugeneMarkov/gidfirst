@@ -2,9 +2,11 @@
     //session_start();
     //require"function.php";
     //require"config.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/pages/function.php";
 
 if (isset($_POST['clear_session'])) {
-    clear_session();
+    $url = '/';
+    clear_session($url);
 }
 
 if (isset($_SESSION['email'])) {
@@ -28,7 +30,7 @@ if (strlen($email) > 0) {
         $email = htmlspecialchars(trim($_POST['email']));
         $pass = htmlspecialchars(trim($_POST['pass']));
         $pass = md5($pass);
-        $new_url = 'index.php';
+        $new_url = '/';
 
         if ($user = get_user_by_email_and_pass($email, $pass)) {
             $_SESSION['email'] = $user['email'] ;
