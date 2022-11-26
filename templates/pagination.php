@@ -1,6 +1,4 @@
 <?php
-    // Подключение к БД
-    //require"config.php";
     /*
     $kol - количество записей для вывода
     $art - с какой записи выводить
@@ -43,7 +41,7 @@ if ($page < $str_pag) {
     $next_page = $page;
 }
 ?>
-    <div>
+    <div style="text-align: center;">
         <nav>
             <ul class="pagination">
             <li>
